@@ -10,7 +10,7 @@
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.fontFamily": "monospace",
   "terminal.integrated.fontSize": 16,
-  "workbench.colorTheme": "Atom One Dark",
+  "workbench.colorTheme": "GitHub Dark",
 
   "editor.fontSize": 14,
   "editor.autoSurround": "languageDefined",

@@ -82,6 +82,13 @@ class _SignInPageState extends State<SignInPage> {
                       height: 25.0,
                     ),
                     TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your username';
+                        } else {
+                          return null;
+                        }
+                      },
                       controller: usernameController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -93,6 +100,13 @@ class _SignInPageState extends State<SignInPage> {
                       height: 25.0,
                     ),
                     TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your password';
+                        } else {
+                          return null;
+                        }
+                      },
                       controller: passwordController,
                       obscureText: !passwordVisible,
                       decoration: InputDecoration(

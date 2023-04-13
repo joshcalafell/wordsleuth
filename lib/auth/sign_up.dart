@@ -101,6 +101,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 25.0,
                       ),
                       TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter a username';
+                          } else {
+                            return null;
+                          }
+                        },
                         controller: usernameController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -112,6 +119,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 25.0,
                       ),
                       TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your email';
+                          } else {
+                            return null;
+                          }
+                        },
                         controller: emailController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -123,6 +137,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 25.0,
                       ),
                       TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter a password';
+                          } else {
+                            return null;
+                          }
+                        },
                         controller: passwordController,
                         obscureText: !passwordVisible,
                         decoration: InputDecoration(
@@ -139,6 +160,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 25.0,
                       ),
                       TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please verify your password';
+                          } else {
+                            return null;
+                          }
+                        },
                         controller: passwordConfirmController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),

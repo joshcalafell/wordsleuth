@@ -72,6 +72,13 @@ class _ConfirmAccountPageState extends State<ConfirmAccountPage> {
                       height: 25.0,
                     ),
                     TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your code from email';
+                        } else {
+                          return null;
+                        }
+                      },
                       controller: codeController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
