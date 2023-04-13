@@ -1,5 +1,6 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:wordsleuth/auth/sign_up.dart';
 import 'package:wordsleuth/pages/lander_page.dart';
 
 class SignInPage extends StatefulWidget {
@@ -144,12 +145,12 @@ class _SignInPageState extends State<SignInPage> {
                         height: 30.0,
                       ),
                       MaterialButton(
-                        onPressed: () {
+                        onPressed: () async {
                           // Validate returns true if the form is valid, or false otherwise.
-                          Navigator.of(context).pushReplacement(
+                          await Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => const LanderPage(
-                                      title: 'Word Sleuth 2.0')));
+                                  builder: (context) =>
+                                      SignUpPage(title: widget.title)));
                         },
                         minWidth: 350.0,
                         height: 50.0,
