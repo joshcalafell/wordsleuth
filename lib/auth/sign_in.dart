@@ -59,134 +59,109 @@ class _SignInPageState extends State<SignInPage> {
     return Form(
         key: _formKey,
         child: Scaffold(
-            appBar: AppBar(
-              title: Text(widget.title),
-              backgroundColor: Colors.deepPurple,
-              foregroundColor: Colors.white,
-            ),
-            body: ListView(
-              shrinkWrap: false,
-              padding: const EdgeInsets.all(15.0),
-              children: <Widget>[
-                const SizedBox(
-                  height: 25.0,
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Column(
-                    children: <Widget>[
-                      const Text('Sign In',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20)),
-                      const SizedBox(
-                        height: 25.0,
+          appBar: AppBar(
+            title: Text(widget.title),
+            backgroundColor: Colors.deepPurple,
+            foregroundColor: Colors.white,
+          ),
+          body: ListView(
+            shrinkWrap: false,
+            padding: const EdgeInsets.all(15.0),
+            children: <Widget>[
+              const SizedBox(
+                height: 25.0,
+              ),
+              Container(
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: Column(
+                  children: <Widget>[
+                    const Text('Sign In',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 20)),
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    TextFormField(
+                      controller: usernameController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.person),
+                        labelText: "Username",
                       ),
-                      TextFormField(
-                        controller: usernameController,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.person),
-                          labelText: "Username",
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15.0,
-                      ),
-                      const SizedBox(
-                        height: 15.0,
-                      ),
-                      TextFormField(
-                        controller: passwordController,
-                        obscureText: !passwordVisible,
-                        decoration: InputDecoration(
-                            border: const OutlineInputBorder(),
-                            prefixIcon: const Icon(Icons.lock),
-                            labelText: "Password",
-                            suffixIcon: IconButton(
-                                onPressed: _togglePasswordVisible,
-                                icon: Icon(!passwordVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility))),
-                      ),
-                      const SizedBox(
-                        height: 15.0,
-                      ),
-                      const SizedBox(
-                        height: 15.0,
-                      ),
-                      MaterialButton(
-                        onPressed: () {
-                          // Validate returns true if the form is valid, or false otherwise.
-                          if (_formKey.currentState!.validate()) {
-                            if (usernameController.text.isNotEmpty &&
-                                passwordController.text.isNotEmpty) {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          LanderPage(title: widget.title)));
-                            }
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')),
-                            );
+                    ),
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    TextFormField(
+                      controller: passwordController,
+                      obscureText: !passwordVisible,
+                      decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          prefixIcon: const Icon(Icons.lock),
+                          labelText: "Password",
+                          suffixIcon: IconButton(
+                              onPressed: _togglePasswordVisible,
+                              icon: Icon(!passwordVisible
+                                  ? Icons.visibility_off
+                                  : Icons.visibility))),
+                    ),
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        // Validate returns true if the form is valid, or false otherwise.
+                        if (_formKey.currentState!.validate()) {
+                          if (usernameController.text.isNotEmpty &&
+                              passwordController.text.isNotEmpty) {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        LanderPage(title: widget.title)));
                           }
-                        },
-                        minWidth: 350.0,
-                        height: 50.0,
-                        color: Colors.deepPurple,
-                        child: const Text(
-                          "Sign In",
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.white,
-                          ),
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Processing Data')),
+                          );
+                        }
+                      },
+                      minWidth: 350.0,
+                      height: 50.0,
+                      color: Colors.deepPurple,
+                      child: const Text(
+                        "Sign In",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white,
                         ),
                       ),
-                      const SizedBox(
-                        height: 30.0,
-                      ),
-                      MaterialButton(
-                        onPressed: () async {
-                          // Validate returns true if the form is valid, or false otherwise.
-                          await Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      SignUpPage(title: widget.title)));
-                        },
-                        minWidth: 350.0,
-                        height: 50.0,
-                        color: Colors.deepPurple,
-                        child: const Text(
-                          "Create Account",
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.white,
-                          ),
+                    ),
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    MaterialButton(
+                      onPressed: () async {
+                        // Validate returns true if the form is valid, or false otherwise.
+                        await Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    SignUpPage(title: widget.title)));
+                      },
+                      minWidth: 350.0,
+                      height: 50.0,
+                      color: Colors.deepPurple,
+                      child: const Text(
+                        "Create Account",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white,
                         ),
                       ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return const AlertDialog(
-                      // Retrieve the text that the user has entered by using the
-                      // TextEditingController.
-                      content: SizedBox(
-                        child: Text('Lorem Ipsum!'),
-                      ),
-                    );
-                  },
-                );
-              },
-              tooltip: 'Go Home',
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.deepPurple,
-              child: const Icon(Icons.home),
-            )));
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }

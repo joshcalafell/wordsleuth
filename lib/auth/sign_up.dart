@@ -109,10 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       const SizedBox(
-                        height: 15.0,
-                      ),
-                      const SizedBox(
-                        height: 15.0,
+                        height: 25.0,
                       ),
                       TextFormField(
                         controller: emailController,
@@ -123,10 +120,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       const SizedBox(
-                        height: 15.0,
-                      ),
-                      const SizedBox(
-                        height: 15.0,
+                        height: 25.0,
                       ),
                       TextFormField(
                         controller: passwordController,
@@ -142,10 +136,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     : Icons.visibility))),
                       ),
                       const SizedBox(
-                        height: 15.0,
-                      ),
-                      const SizedBox(
-                        height: 15.0,
+                        height: 25.0,
                       ),
                       TextFormField(
                         controller: passwordConfirmController,
@@ -156,10 +147,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       const SizedBox(
-                        height: 15.0,
-                      ),
-                      const SizedBox(
-                        height: 15.0,
+                        height: 25.0,
                       ),
                       MaterialButton(
                         onPressed: () async {
@@ -192,9 +180,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       const SizedBox(
-                        height: 15.0,
-                      ),
-                      const SizedBox(
                         height: 25.0,
                       ),
                     ],
@@ -206,8 +191,7 @@ class _SignUpPageState extends State<SignUpPage> {
               onPressed: () async {
                 // Validate returns true if the form is valid, or false otherwise.
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) =>
-                        const SignInPage(title: 'Word Sleuth 2.0')));
+                    builder: (context) => SignInPage(title: widget.title)));
               },
               tooltip: 'Go Home',
               foregroundColor: Colors.white,
