@@ -39,7 +39,7 @@ class _SignInPageState extends State<SignInPage> {
     });
   }
 
-  Future<void> signInUser(String username, String password) async {
+  Future<void> signInUser(String username, String password, context) async {
     try {
       final result = await Amplify.Auth.signIn(
         username: username,
@@ -49,6 +49,11 @@ class _SignInPageState extends State<SignInPage> {
       setState(() {
         isSignedIn = result.isSignedIn;
       });
+
+      if (result.isSignedIn) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => LanderPage(title: widget.title)));
+      }
     } on AuthException catch (e) {
       safePrint(e.message);
     }
@@ -129,11 +134,7 @@ class _SignInPageState extends State<SignInPage> {
                           if (usernameController.text.isNotEmpty &&
                               passwordController.text.isNotEmpty) {
                             signInUser(usernameController.text,
-                                    passwordController.text)
-                                .whenComplete(() => Navigator.of(context)
-                                    .pushReplacement(MaterialPageRoute(
-                                        builder: (context) =>
-                                            LanderPage(title: widget.title))));
+                                passwordController.text, context);
                           }
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Processing Data')),
@@ -155,12 +156,11 @@ class _SignInPageState extends State<SignInPage> {
                       height: 25.0,
                     ),
                     MaterialButton(
-                      onPressed: () async {
+                      onPressed: () {
                         // Validate returns true if the form is valid, or false otherwise.
-                        await Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    SignUpPage(title: widget.title)));
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) =>
+                                SignUpPage(title: widget.title)));
                       },
                       minWidth: 350.0,
                       height: 50.0,

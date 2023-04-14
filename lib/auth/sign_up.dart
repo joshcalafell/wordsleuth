@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:wordsleuth/auth/confirm_account.dart';
 import 'package:wordsleuth/auth/sign_in.dart';
+import 'package:wordsleuth/pages/lander_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key, required this.title});
@@ -65,9 +68,12 @@ class _SignUpPageState extends State<SignUpPage> {
         // ignore: deprecated_member_use
         options: CognitoSignUpOptions(userAttributes: userAttributes),
       );
-      setState(() {
-        isSignUpComplete = result.isSignUpComplete;
-      });
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ConfirmAccountPage(
+                  title: widget.title, username: usernameController.text)));
     } on AuthException catch (e) {
       safePrint(e.message);
     }
@@ -178,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 25.0,
                       ),
                       MaterialButton(
-                        onPressed: () async {
+                        onPressed: () {
                           // Validate returns true if the form is valid, or false otherwise.
                           if (_formKey.currentState!.validate()) {
                             if (usernameController.text.isNotEmpty &&
@@ -187,14 +193,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 passwordConfirmController.text.isNotEmpty &&
                                 (passwordController.text ==
                                     passwordConfirmController.text)) {
-                              await signUpUser().whenComplete(() =>
-                                  Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ConfirmAccountPage(
-                                                  title: widget.title,
-                                                  username: usernameController
-                                                      .text))));
+                              signUpUser();
                             }
                           }
                         },

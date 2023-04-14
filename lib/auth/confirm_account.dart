@@ -31,14 +31,15 @@ class _ConfirmAccountPageState extends State<ConfirmAccountPage> {
     super.dispose();
   }
 
-  Future<void> confirmUser() async {
+  Future<void> confirmUser(context) async {
     try {
       final result = await Amplify.Auth.confirmSignUp(
           username: widget.username, confirmationCode: codeController.text);
 
-      setState(() {
-        isSignUpComplete = result.isSignUpComplete;
-      });
+      if (result.isSignUpComplete) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => SignInPage(title: widget.title)));
+      }
     } on AuthException catch (e) {
       safePrint(e.message);
     }
@@ -97,11 +98,7 @@ class _ConfirmAccountPageState extends State<ConfirmAccountPage> {
                           // you'd often call a server or save the information in a database.
 
                           if (codeController.text.isNotEmpty) {
-                            confirmUser().whenComplete(() =>
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            SignInPage(title: widget.title))));
+                            confirmUser(context);
 
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Processing Data')),
