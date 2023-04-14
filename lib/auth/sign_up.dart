@@ -1,6 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
-
-import 'dart:js_util';
+// ignore_for_file: use_build_context_synchronously, avoid_web_libraries_in_flutter
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
@@ -176,7 +174,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           return 'Must be 6 or more characters';
                         }
                         if (value.length >= 6 &&
-                            equal(passwordController.text,
+                            (passwordController.text !=
                                 passwordConfirmController.text)) {
                           return 'Passwords must match';
                         }
