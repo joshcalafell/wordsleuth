@@ -187,12 +187,14 @@ class _SignUpPageState extends State<SignUpPage> {
                                 passwordConfirmController.text.isNotEmpty &&
                                 (passwordController.text ==
                                     passwordConfirmController.text)) {
-                              await signUpUser().then((value) => Navigator.of(
-                                      context)
-                                  .pushReplacement(MaterialPageRoute(
-                                      builder: (context) => ConfirmAccountPage(
-                                          title: widget.title,
-                                          username: usernameController.text))));
+                              await signUpUser().whenComplete(() =>
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ConfirmAccountPage(
+                                                  title: widget.title,
+                                                  username: usernameController
+                                                      .text))));
                             }
                           }
                         },

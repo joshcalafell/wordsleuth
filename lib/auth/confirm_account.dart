@@ -97,10 +97,12 @@ class _ConfirmAccountPageState extends State<ConfirmAccountPage> {
                           // you'd often call a server or save the information in a database.
 
                           if (codeController.text.isNotEmpty) {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        SignInPage(title: widget.title)));
+                            confirmUser().whenComplete(() =>
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            SignInPage(title: widget.title))));
+
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Processing Data')),
                             );

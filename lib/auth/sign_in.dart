@@ -128,10 +128,12 @@ class _SignInPageState extends State<SignInPage> {
                         if (_formKey.currentState!.validate()) {
                           if (usernameController.text.isNotEmpty &&
                               passwordController.text.isNotEmpty) {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        LanderPage(title: widget.title)));
+                            signInUser(usernameController.text,
+                                    passwordController.text)
+                                .whenComplete(() => Navigator.of(context)
+                                    .pushReplacement(MaterialPageRoute(
+                                        builder: (context) =>
+                                            LanderPage(title: widget.title))));
                           }
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Processing Data')),
