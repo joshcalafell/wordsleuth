@@ -48,9 +48,10 @@ class _LanderPageState extends State<LanderPage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await signOutCurrentUser().then((value) => Navigator.of(context)
-                .pushReplacement(MaterialPageRoute(
+          onPressed: () {
+            signOutCurrentUser().then((value) => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
                     builder: (context) => SignInPage(title: widget.title))));
           },
           tooltip: 'Go Home',

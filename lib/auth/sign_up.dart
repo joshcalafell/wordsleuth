@@ -56,7 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  Future<void> signUpUser() async {
+  Future<void> signUpUser(context) async {
     try {
       final userAttributes = <CognitoUserAttributeKey, String>{
         CognitoUserAttributeKey.email: emailController.text,
@@ -69,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
         options: CognitoSignUpOptions(userAttributes: userAttributes),
       );
 
-      Navigator.push(
+      Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => ConfirmAccountPage(
@@ -174,6 +174,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           }
                         },
                         controller: passwordConfirmController,
+                        obscureText: !passwordVisible,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           prefixIcon: Icon(Icons.lock),
@@ -193,7 +194,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 passwordConfirmController.text.isNotEmpty &&
                                 (passwordController.text ==
                                     passwordConfirmController.text)) {
-                              signUpUser();
+                              signUpUser(context);
                             }
                           }
                         },
@@ -219,8 +220,10 @@ class _SignUpPageState extends State<SignUpPage> {
             floatingActionButton: FloatingActionButton(
               onPressed: () async {
                 // Validate returns true if the form is valid, or false otherwise.
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => SignInPage(title: widget.title)));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SignInPage(title: widget.title)));
               },
               tooltip: 'Go Home',
               foregroundColor: Colors.white,

@@ -37,8 +37,10 @@ class _ConfirmAccountPageState extends State<ConfirmAccountPage> {
           username: widget.username, confirmationCode: codeController.text);
 
       if (result.isSignUpComplete) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => SignInPage(title: widget.title)));
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => SignInPage(title: widget.title)));
       }
     } on AuthException catch (e) {
       safePrint(e.message);
