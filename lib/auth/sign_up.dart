@@ -60,11 +60,13 @@ class _SignUpPageState extends State<SignUpPage> {
         options: CognitoSignUpOptions(userAttributes: userAttributes),
       );
 
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ConfirmAccountPage(
-                  title: widget.title, username: usernameController.text)));
+      if (result.isSignUpComplete) {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ConfirmAccountPage(
+                    title: widget.title, username: usernameController.text)));
+      }
     } on AuthException catch (e) {
       safePrint(e.message);
     }
