@@ -47,16 +47,36 @@ class _ConfirmAccountPageState extends State<ConfirmAccountPage> {
     }
   }
 
+  Future<void> signOutCurrentUser() async {
+    try {
+      await Amplify.Auth.signOut();
+    } on AuthException catch (e) {
+      safePrint(e.message);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
         key: _formKey,
         child: Scaffold(
           appBar: AppBar(
-            title: Text(widget.title),
-            backgroundColor: Colors.deepPurple,
-            foregroundColor: Colors.white,
-          ),
+              title: Text(widget.title),
+              backgroundColor: Colors.deepPurple,
+              foregroundColor: Colors.white,
+              actions: [
+                IconButton(
+                    icon: const Icon(Icons.login,
+                        color: Colors.white, size: 24.0),
+                    onPressed: () {
+                      signOutCurrentUser().then((value) =>
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      SignInPage(title: widget.title))));
+                    })
+              ]),
           body: ListView(
             shrinkWrap: false,
             padding: const EdgeInsets.all(15.0),

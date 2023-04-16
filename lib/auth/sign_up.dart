@@ -72,14 +72,34 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
+  Future<void> signOutCurrentUser() async {
+    try {
+      await Amplify.Auth.signOut();
+    } on AuthException catch (e) {
+      safePrint(e.message);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
-          backgroundColor: Colors.deepPurple,
-          foregroundColor: Colors.white,
-        ),
+            title: Text(widget.title),
+            backgroundColor: Colors.deepPurple,
+            foregroundColor: Colors.white,
+            actions: [
+              IconButton(
+                  icon:
+                      const Icon(Icons.login, color: Colors.white, size: 24.0),
+                  onPressed: () {
+                    signOutCurrentUser().then((value) =>
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    SignInPage(title: widget.title))));
+                  })
+            ]),
         body: Form(
             key: _formKey,
             child: ListView(
@@ -90,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     height: 32.0,
                   ),
                   const Center(
-                    child: Text('Sign Up',
+                    child: Text('Create Account',
                         style: TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 20)),
                   ),
@@ -228,19 +248,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   const SizedBox(
                     height: 25.0,
                   )
-                ])),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            // Validate returns true if the form is valid, or false otherwise.
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => SignInPage(title: widget.title)));
-          },
-          tooltip: 'Go Home',
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.deepPurple,
-          child: const Icon(Icons.home),
-        ));
+                ])));
   }
 }

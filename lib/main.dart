@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           colorScheme: const ColorScheme.dark(brightness: Brightness.dark),
           primarySwatch: Colors.deepPurple,
+          
         ),
         home: const MyHomePage(
           title: appTitle,

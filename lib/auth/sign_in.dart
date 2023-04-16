@@ -32,6 +32,7 @@ class _SignInPageState extends State<SignInPage> {
   void dispose() {
     usernameController.dispose();
     passwordController.dispose();
+
     super.dispose();
   }
 
@@ -75,15 +76,27 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
-          backgroundColor: Colors.deepPurple,
-          foregroundColor: Colors.white,
-        ),
+            title: Text(widget.title),
+            backgroundColor: Colors.deepPurple,
+            foregroundColor: Colors.white,
+            actions: [
+              IconButton(
+                  icon:
+                      const Icon(Icons.login, color: Colors.white, size: 24.0),
+                  onPressed: () {
+                    signOutCurrentUser().then((value) =>
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    SignInPage(title: widget.title))));
+                  })
+            ]),
         body: Form(
             key: _formKey,
             child: ListView(
                 shrinkWrap: false,
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
                 children: <Widget>[
                   const SizedBox(
                     height: 25.0,
@@ -195,12 +208,7 @@ class _SignInPageState extends State<SignInPage> {
                   )
                 ])),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            signOutCurrentUser().then((value) => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => SignInPage(title: widget.title))));
-          },
+          onPressed: () {},
           tooltip: 'Go Home',
           foregroundColor: Colors.white,
           backgroundColor: Colors.deepPurple,
