@@ -88,9 +88,11 @@ class _SignInPageState extends State<SignInPage> {
                   const SizedBox(
                     height: 25.0,
                   ),
-                  const Text('Sign In',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
+                  const Center(
+                    child: Text('Sign In',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 20)),
+                  ),
                   const SizedBox(
                     height: 25.0,
                   ),
@@ -170,7 +172,7 @@ class _SignInPageState extends State<SignInPage> {
                       const Expanded(
                           child: Text(
                         'Don\'t have an account?',
-                        textScaleFactor: 1.3,
+                        textScaleFactor: 1.15,
                       )),
                       TextButton(
                         onPressed: () {

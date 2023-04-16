@@ -87,13 +87,15 @@ class _SignUpPageState extends State<SignUpPage> {
                 padding: const EdgeInsets.all(15.0),
                 children: <Widget>[
                   const SizedBox(
-                    height: 25.0,
+                    height: 32.0,
                   ),
-                  const Text('Sign Up',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
+                  const Center(
+                    child: Text('Sign Up',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 20)),
+                  ),
                   const SizedBox(
-                    height: 25.0,
+                    height: 32.0,
                   ),
                   TextFormField(
                     validator: (value) {
@@ -115,7 +117,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 25.0,
+                    height: 32.0,
                   ),
                   TextFormField(
                     validator: (value) {
@@ -138,7 +140,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 25.0,
+                    height: 32.0,
                   ),
                   TextFormField(
                     validator: (value) {
@@ -151,21 +153,18 @@ class _SignUpPageState extends State<SignUpPage> {
                         return null;
                       }
                     },
+                    maxLength: 20,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: passwordController,
                     obscureText: !passwordVisible,
-                    decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        prefixIcon: const Icon(Icons.lock),
-                        labelText: "New Password",
-                        suffixIcon: IconButton(
-                            onPressed: _togglePasswordVisible,
-                            icon: Icon(!passwordVisible
-                                ? Icons.visibility_off
-                                : Icons.visibility))),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.lock),
+                      labelText: "New Password",
+                    ),
                   ),
                   const SizedBox(
-                    height: 25.0,
+                    height: 12.0,
                   ),
                   TextFormField(
                     validator: (value) {
@@ -183,20 +182,25 @@ class _SignUpPageState extends State<SignUpPage> {
                         return null;
                       }
                     },
-                    autovalidateMode: AutovalidateMode.disabled,
+                    maxLength: 20,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: passwordConfirmController,
                     obscureText: !passwordVisible,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.lock),
-                      labelText: "Verify Password",
-                    ),
+                    decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        prefixIcon: const Icon(Icons.lock),
+                        labelText: "Verify Password",
+                        suffixIcon: IconButton(
+                            onPressed: _togglePasswordVisible,
+                            icon: Icon(!passwordVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility))),
                   ),
                   const SizedBox(
-                    height: 25.0,
+                    height: 50.0,
                   ),
                   MaterialButton(
-                    onPressed: () {
+                    onPressed: () async {
                       // Validate returns true if the form is valid, or false otherwise.
                       if (_formKey.currentState!.validate()) {
                         if (usernameController.text.isNotEmpty &&
@@ -205,7 +209,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             passwordConfirmController.text.isNotEmpty &&
                             (passwordController.text ==
                                 passwordConfirmController.text)) {
-                          signUpUser(context);
+                          await signUpUser(context)
+                              .whenComplete(() => dispose());
                         }
                       }
                     },
@@ -213,7 +218,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     height: 50.0,
                     color: Colors.deepPurple,
                     child: const Text(
-                      "Sign Up",
+                      "Get Verification Code",
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.white,
