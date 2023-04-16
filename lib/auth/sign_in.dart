@@ -81,8 +81,8 @@ class _SignInPageState extends State<SignInPage> {
             foregroundColor: Colors.white,
             actions: [
               IconButton(
-                  icon:
-                      const Icon(Icons.login, color: Colors.white, size: 24.0),
+                  icon: const Icon(Icons.account_circle,
+                      color: Colors.white, size: 24.0),
                   onPressed: () {
                     signOutCurrentUser().then((value) =>
                         Navigator.pushReplacement(
@@ -145,7 +145,7 @@ class _SignInPageState extends State<SignInPage> {
                         labelText: "Password",
                         suffixIcon: IconButton(
                             onPressed: _togglePasswordVisible,
-                            icon: Icon(!passwordVisible
+                            icon: Icon(passwordVisible
                                 ? Icons.visibility_off
                                 : Icons.visibility))),
                   ),
@@ -200,7 +200,7 @@ class _SignInPageState extends State<SignInPage> {
                           "Sign Up",
                           style: TextStyle(
                             fontSize: 18.0,
-                            color: Colors.white,
+                            color: Colors.pinkAccent,
                           ),
                         ),
                       ),

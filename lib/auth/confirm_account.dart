@@ -66,7 +66,7 @@ class _ConfirmAccountPageState extends State<ConfirmAccountPage> {
               foregroundColor: Colors.white,
               actions: [
                 IconButton(
-                    icon: const Icon(Icons.login,
+                    icon: const Icon(Icons.account_circle,
                         color: Colors.white, size: 24.0),
                     onPressed: () {
                       signOutCurrentUser().then((value) =>
