@@ -104,7 +104,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         return null;
                       }
                     },
-                    autovalidateMode: AutovalidateMode.always,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: usernameController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -127,7 +127,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         return null;
                       }
                     },
-                    autovalidateMode: AutovalidateMode.always,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: emailController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -149,7 +149,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         return null;
                       }
                     },
-                    autovalidateMode: AutovalidateMode.always,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: passwordController,
                     obscureText: !passwordVisible,
                     decoration: InputDecoration(
@@ -181,7 +181,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         return null;
                       }
                     },
-                    autovalidateMode: AutovalidateMode.always,
+                    autovalidateMode: AutovalidateMode.disabled,
                     controller: passwordConfirmController,
                     obscureText: !passwordVisible,
                     decoration: const InputDecoration(

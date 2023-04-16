@@ -102,7 +102,7 @@ class _SignInPageState extends State<SignInPage> {
                         return null;
                       }
                     },
-                    autovalidateMode: AutovalidateMode.always,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: usernameController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -121,7 +121,7 @@ class _SignInPageState extends State<SignInPage> {
                         return null;
                       }
                     },
-                    autovalidateMode: AutovalidateMode.always,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: passwordController,
                     obscureText: !passwordVisible,
                     decoration: InputDecoration(
@@ -135,7 +135,7 @@ class _SignInPageState extends State<SignInPage> {
                                 : Icons.visibility))),
                   ),
                   const SizedBox(
-                    height: 25.0,
+                    height: 50.0,
                   ),
                   MaterialButton(
                     onPressed: () {
@@ -165,25 +165,31 @@ class _SignInPageState extends State<SignInPage> {
                   const SizedBox(
                     height: 25.0,
                   ),
-                  MaterialButton(
-                    onPressed: () {
-                      // Validate returns true if the form is valid, or false otherwise.
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  SignUpPage(title: widget.title)));
-                    },
-                    minWidth: 350.0,
-                    height: 50.0,
-                    color: Colors.deepPurple,
-                    child: const Text(
-                      "Create Account",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.white,
+                  Row(
+                    children: [
+                      const Expanded(
+                          child: Text(
+                        'Don\'t have an account?',
+                        textScaleFactor: 1.3,
+                      )),
+                      TextButton(
+                        onPressed: () {
+                          // Validate returns true if the form is valid, or false otherwise.
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      SignUpPage(title: widget.title)));
+                        },
+                        child: const Text(
+                          "Sign Up",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   )
                 ])),
         floatingActionButton: FloatingActionButton(
