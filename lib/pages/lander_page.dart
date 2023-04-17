@@ -51,12 +51,12 @@ class _LanderPageState extends State<LanderPage> {
         currentIndex: 0, // this will be set when a new tab is tapped
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.mail),
-            label: 'Messages',
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
         ],
