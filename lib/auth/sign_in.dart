@@ -1,9 +1,27 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
 import 'package:wordsleuth/auth/sign_up.dart';
 import 'package:wordsleuth/pages/lander_page.dart';
 
-class SignIn {}
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const LanderPage(title: 'Word Slut 2.0'),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key, required this.title});
@@ -54,10 +72,7 @@ class _SignInPageState extends State<SignInPage> {
       });
 
       if (result.isSignedIn) {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => LanderPage(title: widget.title)));
+        Navigator.of(context).push(_createRoute());
       }
     } on AuthException catch (e) {
       safePrint(e.message);
@@ -65,10 +80,17 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Future<void> signOutCurrentUser() async {
-    try {
-      await Amplify.Auth.signOut();
-    } on AuthException catch (e) {
-      safePrint(e.message);
+    final result = await Amplify.Auth.signOut();
+    if (result is CognitoCompleteSignOut) {
+      setState(() {
+        isSignedIn = false;
+      });
+      safePrint('Sign out completed successfully');
+    } else if (result is CognitoFailedSignOut) {
+      setState(() {
+        isSignedIn = false;
+      });
+      safePrint('Error signing user out: ${result.exception.message}');
     }
   }
 

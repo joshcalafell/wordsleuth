@@ -15,14 +15,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    const appTitle = 'Word sleuth 2.0';
+    const appTitle = 'Word Sleuth 2.0';
 
     return MaterialApp(
         title: appTitle,
         theme: ThemeData(
           colorScheme: const ColorScheme.dark(brightness: Brightness.dark),
           primarySwatch: Colors.deepPurple,
-          
         ),
         home: const MyHomePage(
           title: appTitle,

@@ -29,22 +29,35 @@ class _LanderPageState extends State<LanderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(widget.title),
-          backgroundColor: Colors.deepPurple,
-          foregroundColor: Colors.white,
-          actions: [
-            IconButton(
-                icon: const Icon(Icons.account_circle,
-                    color: Colors.white, size: 24.0),
-                onPressed: () {
-                  signOutCurrentUser().then((value) =>
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  SignInPage(title: widget.title))));
-                })
-          ]),
+        title: Text(widget.title),
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.home),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.call),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.more_vert),
+          ),
+          IconButton(
+              icon: const Icon(
+                Icons.account_circle,
+              ),
+              onPressed: () {
+                signOutCurrentUser().then((value) => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            SignInPage(title: widget.title))));
+              })
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.white,
         selectedItemColor: Colors.deepPurpleAccent,
@@ -58,34 +71,35 @@ class _LanderPageState extends State<LanderPage> {
             icon: Icon(Icons.favorite),
             label: 'Favorites',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About')
         ],
       ),
       body: ListView(
-        shrinkWrap: false,
-        padding: const EdgeInsets.all(15.0),
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(8.0),
         children: <Widget>[
           const SizedBox(
-            height: 25.0,
+            height: 8.0,
           ),
           Container(
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
             child: Card(
               elevation: 50,
               shadowColor: Colors.black,
-              color: Colors.amberAccent[100],
+              color: Colors.white,
               child: SizedBox(
                 width: 300,
-                height: 500,
+                height: 480,
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(26.0),
                   child: Column(
                     children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.amberAccent[500],
+                      const CircleAvatar(
+                        backgroundColor: Colors.white,
                         radius: 108,
-                        child: const CircleAvatar(
-                          backgroundColor: Colors.pinkAccent,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.deepPurple,
                           radius: 100,
                         ),
                       ),
@@ -116,7 +130,131 @@ class _LanderPageState extends State<LanderPage> {
                       ), //SizedBox
                       MaterialButton(
                         onPressed: () {},
-                        color: Colors.deepPurpleAccent,
+                        color: Colors.deepPurple,
+                        child: const Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: Center(
+                            child: Text('More Info...'),
+                          ), //Row
+                        ), //Padding
+                      ), //RaisedButton
+                    ],
+                  ), //Column
+                ), //Padding
+              ), //SizedBox
+            ), //Card
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+            child: Card(
+              elevation: 50,
+              shadowColor: Colors.black,
+              color: Colors.white,
+              child: SizedBox(
+                width: 300,
+                height: 480,
+                child: Padding(
+                  padding: const EdgeInsets.all(26.0),
+                  child: Column(
+                    children: [
+                      const CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 108,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.deepPurple,
+                          radius: 100,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ), //SizedBox
+                      const Text(
+                        'WordSleuth 2.1',
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ), //Textstyle
+                      ), //Text
+                      const SizedBox(
+                        height: 10,
+                      ), //SizedBox
+                      // ignore: prefer_const_constructors
+                      Text(
+                        'This is a re-make of an app that I wrote about 10 years ago for Android, but this time, it\'s a good excuse to learn Flutter and Amazon AWS.',
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.black,
+                        ), //Textstyle
+                      ), //Text
+                      const SizedBox(
+                        height: 10,
+                      ), //SizedBox
+                      MaterialButton(
+                        onPressed: () {},
+                        color: Colors.deepPurple,
+                        child: const Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: Center(
+                            child: Text('More Info...'),
+                          ), //Row
+                        ), //Padding
+                      ), //RaisedButton
+                    ],
+                  ), //Column
+                ), //Padding
+              ), //SizedBox
+            ), //Card
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+            child: Card(
+              elevation: 50,
+              shadowColor: Colors.black,
+              color: Colors.white,
+              child: SizedBox(
+                width: 300,
+                height: 480,
+                child: Padding(
+                  padding: const EdgeInsets.all(26.0),
+                  child: Column(
+                    children: [
+                      const CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 108,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.deepPurple,
+                          radius: 100,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ), //SizedBox
+                      const Text(
+                        'WordSleuth 2.2',
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ), //Textstyle
+                      ), //Text
+                      const SizedBox(
+                        height: 10,
+                      ), //SizedBox
+                      // ignore: prefer_const_constructors
+                      Text(
+                        'This is a re-make of an app that I wrote about 10 years ago for Android, but this time, it\'s a good excuse to learn Flutter and Amazon AWS.',
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.black,
+                        ), //Textstyle
+                      ), //Text
+                      const SizedBox(
+                        height: 10,
+                      ), //SizedBox
+                      MaterialButton(
+                        onPressed: () {},
+                        color: Colors.deepPurple,
                         child: const Padding(
                           padding: EdgeInsets.all(4.0),
                           child: Center(
