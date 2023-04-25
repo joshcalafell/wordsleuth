@@ -3,8 +3,8 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:wordsleuth/auth/confirm_account.dart';
-import 'package:wordsleuth/auth/sign_in.dart';
+import 'package:wordsleuth/src/auth/confirm_account.dart';
+import 'package:wordsleuth/src/auth/sign_in.dart';
 import 'package:email_validator/email_validator.dart';
 
 class SignUpPage extends StatefulWidget {

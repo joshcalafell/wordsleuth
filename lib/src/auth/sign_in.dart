@@ -1,8 +1,8 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
-import 'package:wordsleuth/auth/sign_up.dart';
-import 'package:wordsleuth/pages/lander_page.dart';
+import 'package:wordsleuth/src/auth/sign_up.dart';
+import 'package:wordsleuth/src/screens/lander_page.dart';
 
 Route _createRoute() {
   return PageRouteBuilder(

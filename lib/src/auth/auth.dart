@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+/* import 'package:flutter/widgets.dart';
 
 /// A mock authentication service
 class WordSleuthAuth extends ChangeNotifier {
@@ -41,3 +41,4 @@ class WordSleuthAuthScope extends InheritedNotifier<WordSleuthAuth> {
       .dependOnInheritedWidgetOfExactType<WordSleuthAuthScope>()!
       .notifier!;
 }
+ */

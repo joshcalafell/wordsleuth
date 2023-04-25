@@ -1,6 +1,6 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:wordsleuth/auth/sign_in.dart';
+import 'package:wordsleuth/src/auth/sign_in.dart';
 
 class LanderPage extends StatefulWidget {
   const LanderPage({super.key, required this.title});
